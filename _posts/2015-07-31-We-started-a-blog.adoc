@@ -1,6 +1,6 @@
-= Introduction
+= We started a blog
 
-HubPress is a web application to build a blog on GitHub. This blog is built by it 😃
+HubPress is a web application to build a blog on GitHub. This blog is built taking advantage of it.
 
 I think HubPress is the best practice as a developer blog platform. Because it's simple, free, open-source, easy to setup, and hosted on github where most of the developers are familiar with.
 
