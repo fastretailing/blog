@@ -1,0 +1,43 @@
+= Introduction
+
+HubPress is a web application to build a blog on GitHub. This blog is built by it 😃
+
+I think HubPress is the best practice as a developer blog platform. Because it's simple, free, open-source, easy to setup, and hosted on github where most of the developers are familiar with.
+
+For setup, to use hubpress.io words, only these stuffs.
+
+_Fork the hubpress.io repository, update the config file and it's done, your Blog is ready._
+
+At first I was going to use Wordpress.com. But once I tried installing HubPress, I finished installation, some configuration, and design for a day.
+
+After installation, you may see the page like this.
+
+image:https://camo.githubusercontent.com/bd45364c6c64475d1816cef50ddc8395f0f4165b/687474703a2f2f68756270726573732e696f2f696d672f686f6d652d696e7374616c6c2e706e67[width=300]
+
+But there are a few things you might be confused during writing a blog. So let me share them for your information.
+
+=== Blog Title is required
+
+Saving and publishing blog will end in failure if it doesn't have a blog title. Though an error dialog only shows a common message. It may take a bit time to get the cause.
+
+image:hubpress_error_dialog.png[width=300]
+
+=== How to embed a image 
+
+There's not any image managing function. So you need to upload an image to anywhere to embed an image to a blog. If you do so, you can embed it with asciidoc syntax, just like below.
+
+`image::http://<full path to image>[]`
+
+Or you can push an image to `<repository root>/images`  directory. Then you can use a relative path.
+
+`image::<filename>[]`
+
+Also you can add some attributes to the image using asciidoc syntax, such as a size, position, caption etc.
+
+http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#images[AsciiDoc Syntax Quick Reference / Asciidoctor]
+
+=== Authorization
+
+All users are authorised by github account. All GitHub Pages are public and any github users can login to your HubPress Administration console via internet. But updating operations are restricted based on its repository's access control just as a normal GitHub repository.
+
+HubPress looks preparing for developers' contribution. I'd like to contribute to it as a developer's way when the time comes!
