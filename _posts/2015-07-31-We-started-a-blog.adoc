@@ -20,7 +20,7 @@ But there are a few things you might be confused during writing a blog. So let m
 
 Saving and publishing blog will end in failure if it doesn't have a blog title. Though an error dialog only shows a common message. It may take a bit time to get the cause.
 
-image:hubpress_error_dialog.png[width=300]
+image::http://fastretailing.github.io/blog/images/hubpress_error_dialog.png[width=300]
 
 === How to embed a image 
 
