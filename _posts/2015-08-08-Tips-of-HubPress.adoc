@@ -1,5 +1,5 @@
 = Tips of HubPress
-:published_at: 2015-08-07
+:published_at: 2015-08-08
 
 HubPress is a web application to build a blog on GitHub. This blog is built taking advantage of it.
 
