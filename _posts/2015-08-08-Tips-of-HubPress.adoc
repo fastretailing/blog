@@ -1,6 +1,12 @@
 = Tips of HubPress
 :published_at: 2015-08-08
 
+Hi, I'm Hiroaki Miura. I'm working as a developer at Fast Retailing.
+
+My hobbies, aside from programming, are collecting funny pictures of cats and making a study about how to properly approach a cat without making it run away. I am confident that when my study achieves a good outcome, I will win a Nobel Prize.
+
+Anyway, I'm in charge of mobile application development, but now I'd like to write about HubPress.
+
 HubPress is a web application to build a blog on GitHub. This blog is built taking advantage of it.
 
 I think HubPress is the best practice as a developer blog platform. Because it's simple, free, open-source, easy to setup, and hosted on github where most of the developers are familiar with.
