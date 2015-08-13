@@ -1,11 +1,15 @@
 = We started a blog
 
+:published_at: 2015-08-13
+
+image::http://fastretailing.github.io/blog/images/frway_main.jpg[]
+
 Hello. We’ve just launched the Developers blog!
 
-Fast Retailing is a leading global Japanese apparel group, and we're the Digital, E-Commerce, and Infra team.
+Fast Retailing is a leading global Japanese apparel group, and we're in the Digital, E-Commerce, and Infra team.
 
 It's a little known fact that we have dozens of distinguished engineers from different countries!
 
-We're continually striving to be the best, and accordingly upgrade and develop new web applications using the latest technology.
+We're continually striving to be the best, and also consequently upgrading and developing new web applications using the latest technology.
 
-With this blog, we'll share knowledge with our fellow engineers😉
+With this blog, we'll be able to share knowledge with our fellow engineers😉
