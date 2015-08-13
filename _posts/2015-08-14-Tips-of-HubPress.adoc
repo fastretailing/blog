@@ -2,7 +2,7 @@
 
 :published_at: 2015-08-14
 
-image::http://fastretailing.github.io/blog/images/hubpress.png[]
+image::http://fastretailing.github.io/blog/images/hubpress.png[width=480]
 
 Hi, I'm Hiroaki Miura. I'm working as a developer at Fast Retailing.
 
