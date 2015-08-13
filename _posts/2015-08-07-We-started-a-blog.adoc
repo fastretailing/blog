@@ -2,10 +2,10 @@
 
 Hello. We’ve just launched the Developers blog!
 
-Fast Retailing is a leading global Japanese apparel group, and we're the Digital & E-Commerce & Infra team.
+Fast Retailing is a leading global Japanese apparel group, and we're the Digital, E-Commerce, and Infra team.
 
-It's a little known fact that we have dozens of distinguished engineers from different countries😉
+It's a little known fact that we have dozens of distinguished engineers from different countries!
 
 We're continually striving to be the best, and accordingly upgrade and develop new web applications using the latest technology.
 
-With this blog, we'll share knowledge with our fellow engineers!
+With this blog, we'll share knowledge with our fellow engineers😉
