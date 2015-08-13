@@ -1,5 +1,8 @@
 = Tips of HubPress
-:published_at: 2015-08-08
+
+:published_at: 2015-08-14
+
+image::http://fastretailing.github.io/blog/images/hubpress.png[]
 
 Hi, I'm Hiroaki Miura. I'm working as a developer at Fast Retailing.
 
@@ -9,7 +12,7 @@ Anyway, I'm in charge of mobile application development, but now I'd like to wri
 
 HubPress is a web application to build a blog on GitHub. This blog is built taking advantage of it.
 
-I think HubPress is the best practice as a developer blog platform. Because it's simple, free, open-source, easy to setup, and hosted on github where most of the developers are familiar with.
+I think HubPress is the best practice as a developer blog platform. Because it's simple, free, open-source, easy to setup, and hosted on Github where most of the developers are familiar with.
 
 For setup, to use hubpress.io words, only these stuffs.
 
@@ -45,6 +48,6 @@ http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#images[AsciiDoc Syn
 
 === Authorization
 
-All users are authorised by github account. All GitHub Pages are public and any github users can login to your HubPress Administration console via internet. But updating operations are restricted based on its repository's access control just as a normal GitHub repository.
+All users are authorized by Github account. All GitHub Pages are public and any Github users can login to your HubPress Administration console via internet. But updating operations are restricted based on its repository's access control just as a normal GitHub repository.
 
-HubPress looks preparing for developers' contribution. I'd like to contribute to it as a developer's way when the time comes!
+HubPress may be accepting developers contribution, as of now it is also preparing for this. I'd like to contribute to it as a developer!
