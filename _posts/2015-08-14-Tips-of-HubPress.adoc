@@ -16,7 +16,9 @@ I think HubPress is the best practice as a developer blog platform. Because it's
 
 For setup, to use hubpress.io words, only these stuffs.
 
-_Fork the hubpress.io repository, update the config file and it's done, your Blog is ready._
+_Fork the hubpress.io repository, +
+update the config file and it's done, +
+your Blog is ready._
 
 At first I was using Wordpress.com. But once I tried installing HubPress, I finished installation, some configuration, and design for a day. I actually find it easy to use.
 
