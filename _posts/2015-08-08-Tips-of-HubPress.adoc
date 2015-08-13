@@ -1,4 +1,11 @@
-= We started a blog
+= Tips of HubPress
+:published_at: 2015-08-08
+
+Hi, I'm Hiroaki Miura. I'm working as a developer at Fast Retailing.
+
+My hobbies, aside from programming, are collecting funny pictures of cats and making a study about how to properly approach a cat without making it run away. I am confident that when my study achieves a good outcome, I will win a Nobel Prize.
+
+Anyway, I'm in charge of mobile application development, but now I'd like to write about HubPress.
 
 HubPress is a web application to build a blog on GitHub. This blog is built taking advantage of it.
 
@@ -8,23 +15,23 @@ For setup, to use hubpress.io words, only these stuffs.
 
 _Fork the hubpress.io repository, update the config file and it's done, your Blog is ready._
 
-At first I was going to use Wordpress.com. But once I tried installing HubPress, I finished installation, some configuration, and design for a day.
+At first I was using Wordpress.com. But once I tried installing HubPress, I finished installation, some configuration, and design for a day. I actually find it easy to use.
 
 After installation, you may see the page like this.
 
 image:https://camo.githubusercontent.com/bd45364c6c64475d1816cef50ddc8395f0f4165b/687474703a2f2f68756270726573732e696f2f696d672f686f6d652d696e7374616c6c2e706e67[width=300]
 
-But there are a few things you might be confused during writing a blog. So let me share them for your information.
+But there are a few things might be confusing when writing a blog. So let me share you some of the information needed.
 
 === Blog Title is required
 
 Saving and publishing blog will end in failure if it doesn't have a blog title. Though an error dialog only shows a common message. It may take a bit time to get the cause.
 
-image:hubpress_error_dialog.png[width=300]
+image::http://fastretailing.github.io/blog/images/hubpress_error_dialog.png[width=300]
 
 === How to embed a image 
 
-There's not any image managing function. So you need to upload an image to anywhere to embed an image to a blog. If you do so, you can embed it with asciidoc syntax, just like below.
+There's not any image managing function. So you need to upload an image from anywhere to embed an image to a blog. If you do so, you can embed it with asciidoc syntax, just like below.
 
 `image::http://<full path to image>[]`
 
@@ -32,7 +39,7 @@ Or you can push an image to `<repository root>/images`  directory. Then you can 
 
 `image::<filename>[]`
 
-Also you can add some attributes to the image using asciidoc syntax, such as a size, position, caption etc.
+Also you can add some attributes to the image, such as a size, position, caption etc.
 
 http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#images[AsciiDoc Syntax Quick Reference / Asciidoctor]
 
