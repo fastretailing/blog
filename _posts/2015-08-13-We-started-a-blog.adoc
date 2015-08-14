@@ -10,6 +10,6 @@ Fast Retailing is a leading global Japanese apparel group, and we're in the Busi
 
 It's a little known fact that we have dozens of distinguished engineers from different countries!
 
-We're continually striving to be the best, and also consequently upgrading and developing new web applications using the latest technology.
+We're continuously striving to be the best, and also consequently upgrading and developing new web applications using the latest technology.
 
 With this blog, we'll be able to share knowledge with our fellow engineers😉
