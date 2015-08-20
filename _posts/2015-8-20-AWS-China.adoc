@@ -4,18 +4,18 @@ Keito Fukuda <keito.fukuda@fastretailing.com>
 Hi, there, my name is Keito Fukuda, a lead technical architect at Fast Retailing.
 Today I would like to talk about AWS China(Beijing) region since it is very unique from other AWS regions and you may want to know the discrepancies in advance of you starting to use it without making some efforts on your own.
 
-=== Fast Retailing
+== Fast Retailing
 Let me start with a little bit talking about our company Fast Retailing as there are some chances that you hear very first time and have no idea about us.
 We Fast Retailing is a holding company which owns various global apparel brands underneath such as UNIQLO, GU, they are born in Japan but spreading out to global markets. Theory, JBrand, they are originally from US but both have global penetration and large number of funs all over the world. Last but not least, Comptoir des Cotonniers and Princesse tam tam, which are from France.
 As we have global reachability, of course we aggressively take advantage of AWS global regions. We as of today utilize Tokyo, Singapore, Virginia, California, Sydney, Ireland, Frankfrut, then of course China(Beijing) regions to provide our services to global customers. Especially China(Beijing) region is pretty important for us as it is our 2nd biggest market, besides there are some challenges due to some unique legal and infrastructure restrictions.
 
-=== Web Service to China
+== Web Service to China
 As described above, when we provide web service in mainland China, there are some difficulties. I will quickly list up 2 significant challenges below.
 
 . ICP License
 . Great Firewall
 
-====== ICP License
+=== ICP License
 As you all may know, if you provide any web service in mainland China, it is neccessary to acquire ICP(Internet Content Provider) license from the China government. This license requires us to have a legal entity inside of China and go though required procedure.
 We Fast Retailing also hold several licenses for our brands to provide web contents in China as follows.
 
@@ -29,49 +29,49 @@ gu-global.com, 沪ICP备13017798号-1
 fastretailing.com, 沪ICP备09003223号-3
 |===
 
-====== Great Firewall
+=== Great Firewall
 This is one of very well-known unique restriction in mainland China. You can find what it is and how it works in somewhere online(Please just google it). But in a nuts shell, China government basically monitors all inbound/outbound traffics on HTTP(80)/HTTPs(443) to check contents which work in negative way from China government perspective and block it at DNS level if they determine that we are providing contents which are not good for China government.
 Especially when traffic goes out of mainland China, it is strictly monitored and makes traffic roundtrip really slow.
 Even network traffic inside of China, it is really unstable especially if traffic goes beyond a boundary between North side dominated by China telecom and South side dominated by China Unicom.
 
-== AWS China(Beijing) Region Uniqueness
-=== Account
+= AWS China(Beijing) Region Uniqueness
+== Account
 - billing account
 - consolidated account
 - support program
 
-=== Service Availability
+== Service Availability
 - EC2, S3, StorageGateway, Glacier, VPC, Direct Connect, IAM, Trusted Advisor, CloudTrail, CloudWatch, DynamoDB, ElasticCache, RDS, CloudFormation, EMR, Kinesis, SNS, SQS, SWF
 - screen capture
 
-=== ICP License Registration
+== ICP License Registration
 - HTTP/HTTPs GET
 
-=== MFA
+== MFA
 - Not supported
 
-=== AMI Sharing
+== AMI Sharing
 - Marketplace
 - AMI from other regions
 - China limited Community AMIs
 
-=== Auto-Recovery
+== Auto-Recovery
 - Not supported
 
-=== Admin Console
+== Admin Console
 - English only
 
-== Good Practices in Fast Retailing for AWS China
+= Good Practices in Fast Retailing for AWS China
 
-=== CDN
+== CDN
 - Akamai
 
-=== Independency
+== Independency
 - monitoring
 
-=== Setting complex password
+== Setting complex password
 
-=== Programable Infrastructure
+== Programable Infrastructure
 
 
 
