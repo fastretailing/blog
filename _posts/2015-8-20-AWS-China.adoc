@@ -19,23 +19,14 @@ As described above, when we provide web service in mainland China, there are som
 As you all may know, if you provide any web service in mainland China, it is neccessary to acquire ICP(Internet Content Provider) license from the China government. This license requires us to have a legal entity inside of China and go though required procedure.
 We Fast Retailing also hold several licenses for our brands to provide web contents in China as follows.
 
-[cols="1,2", options="header"]
-.ICP License List
+[format="csv", options="header"]
+.Fast Retailing ICP License List
 |===
-| Domain
-| License No
-
-| uniqlo.com
-| 沪ICP备09003223号-4
-
-| uniqlo.cn
-| 沪ICP备09003223号-1
-
-| fastretailing.com
-| 沪ICP备09003223号-3
-
-| gu-global.com
-| 沪ICP备13017798号-1
+Domain, License No.
+uniqlo.com, 沪ICP备09003223号-4
+uniqlo.cn, 沪ICP备09003223号-1
+fastretailing.com, 沪ICP备09003223号-3
+gu-global.com, 沪ICP备13017798号-1
 |===
 
 ====== Great Firewall
