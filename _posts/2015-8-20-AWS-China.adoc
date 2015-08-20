@@ -30,12 +30,16 @@ fastretailing.com, 沪ICP备09003223号-3
 |===
 
 === Great Firewall
-This is one of very well-known unique restriction in mainland China. You can find what it is and how it works in somewhere online(Please just google it). But in a nuts shell, China government basically monitors all inbound/outbound traffics on HTTP(80)/HTTPs(443) to check contents which work in negative way from China government perspective and block it at DNS level if they determine that we are providing contents which are not good for China government.
+This is one of very well-known unique restrictions in mainland China. You can find what it is and how it works in somewhere online(Please just google it). But in a nuts shell, All inbound/outbound traffics on HTTP(80)/HTTPs(443) are monitored all the time and would be blocked at DNS level if China government found your web service providing contents which are not good for China government.
 Especially when traffic goes out of mainland China, it is strictly monitored and makes traffic roundtrip really slow.
 Even network traffic inside of China, it is really unstable especially if traffic goes beyond a boundary between North side dominated by China telecom and South side dominated by China Unicom.
 
 = AWS China(Beijing) Region Uniqueness
+Because of the China unique restrictions described in the prior section, when you set up your web service in AWS China(Beijing) region, there are several consideration points you need to keep in mind. Here I will tell you each one of them which we have discovered so far through our operation in China region.
+
 == Account
+First of all, let me talk about AWS account. This is one of things which work in different way from all other AWS regions. In order to use China region, you need a completely independent account, which is dedicated only for China region.
+
 - billing account
 - consolidated account
 - support program
