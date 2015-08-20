@@ -1,0 +1,151 @@
+= AWS China(Beijing) Region Tips
+Keito Fukuda <keito.fukuda@fastretailing.com>
+
+Hi, there, my name is Keito Fukuda, a lead technical architect at Fast Retailing.
+Today I would like to talk about AWS China(Beijing) region since it is very unique from other AWS regions and you may want to know the discrepancies in advance of you starting to use it without making some efforts on your own.
+
+=== Fast Retailing
+Let me start with a little bit talking about our company Fast Retailing as there are some chances that you hear very first time and have no idea about us.
+We Fast Retailing is a holding company which owns various global apparel brands underneath such as UNIQLO, GU, they are born in Japan but spreading out to global markets. Theory, JBrand, they are originally from US but both have global penetration and large number of funs all over the world. Last but not least, Comptoir des Cotonniers and Princesse tam tam, which are from France.
+As we have global reachability, of course we aggressively take advantage of AWS global regions. We as of today utilize Tokyo, Singapore, Virginia, California, Sydney, Ireland, Frankfrut, then of course China(Beijing) regions to provide our services to global customers. Especially China(Beijing) region is pretty important for us as it is our 2nd biggest market, besides there are some challenges due to some unique legal and infrastructure restrictions.
+
+=== Web Service to China
+As described above, when we provide web service in mainland China, there are some difficulties. I will quickly list up 2 significant challenges below.
+
+. ICP License
+. Great Firewall
+
+====== ICP License
+As you all may know, if you provide any web service in mainland China, it is neccessary to acquire ICP(Internet Content Provider) license from the China government. This license requires us to have a legal entity inside of China and go though required procedure.
+We Fast Retailing also hold several licenses for our brands to provide web contents in China as follows.
+
+[cols="1,2", options="header"]
+.ICP License List
+|===
+| Domain
+| License No
+
+| uniqlo.com
+| 沪ICP备09003223号-4
+
+| uniqlo.cn
+| 沪ICP备09003223号-1
+
+| fastretailing.com
+| 沪ICP备09003223号-3
+
+| gu-global.com
+| 沪ICP备13017798号-1
+|===
+
+====== Great Firewall
+This is one of very well-known unique restriction in mainland China. You can find what it is and how it works in somewhere online(Please just google it). But in a nuts shell, China government basically monitors all inbound/outbound traffics on HTTP(80)/HTTPs(443) to check contents which work in negative way from China government perspective and block it at DNS level if they determine that we are providing contents which are not good for China government.
+Especially when traffic goes out of mainland China, it is strictly monitored and makes traffic roundtrip really slow.
+Even network traffic inside of China, it is really unstable especially if traffic goes beyond a boundary between North side dominated by China telecom and South side dominated by China Unicom.
+
+== AWS China(Beijing) Region Uniqueness
+=== Account
+- billing account
+- consolidated account
+- support program
+
+=== Service Availability
+- EC2, S3, StorageGateway, Glacier, VPC, Direct Connect, IAM, Trusted Advisor, CloudTrail, CloudWatch, DynamoDB, ElasticCache, RDS, CloudFormation, EMR, Kinesis, SNS, SQS, SWF
+- screen capture
+
+=== ICP License Registration
+- HTTP/HTTPs GET
+
+=== MFA
+- Not supported
+
+=== AMI Sharing
+- Marketplace
+- AMI from other regions
+- China limited Community AMIs
+
+=== Auto-Recovery
+- Not supported
+
+=== Admin Console
+- English only
+
+== Good Practices in Fast Retailing for AWS China
+
+=== CDN
+- Akamai
+
+=== Independency
+- monitoring
+
+=== Setting complex password
+
+=== Programable Infrastructure
+
+
+
+# Know-how about Beijing Region
+## Summary
+1. Beijing Region unlike the global account , there is a need to be managed as a separate account .
+2. Beijing account there is a difference with the global account.
+summarized abount Security , Network , Service Restriction.
+  e.g.  In order to use 443/tcp, 80/tcp port , you must have the permission of the ICP license.(Can not HTTP GET for S3)
+3. 2015/08 current information. about EC2,VPC,S3,RDS,IAM.
+## Security
+### IAM User
+1. can't use the MFA.
+Therefore , it is essential to set a complex password.
+## Network
+### The impact of the Great Firewall
+1. ICP license until the authorization is obtained, The following communication protocols are not all communication.
+・http 80/tcp
+・https 443/tcp
+※Port number dependent.
+2. The following communication protocols are not affected. For now.
+・ssh 22/tcp
+・Serf 7946/tcp,7946/udp
+・IPsec(vti) 500/udp, esp(custom protocols)
+(・OpenVPN temporary port 50443/tcp)
+
+### How to take the permission of the ICP license by AWS
+In this case , Japan support and Beijing support worked together,
+therefore, did not use support form.
+In about one week from the request to Japan support , it received a notice indicating that are permitted.
+### latency
+1. Sometimes , there is a time response of Management Console is slow.
+#### ping
+1. between Tokyo and Beijing
+As it follows ping response time of private NW between Tokyo VPC and Beijing VPC. About 3 days per second ping run result.
+ ・66% under 100 msec
+ ・14% 100 - 200 msec
+ ・20% over 200 msec
+ ・there was a point over 1000 msec (per day)
+ ![pingResponse](ping_response.png)
+### latency by OpenVPN
+### deal draft when latency is slow
+1. `restart vpn` in VyOS instance in Beijing Region.
+2. When it still does not improve, `instance stop/start`. e.g. by Management Console(call API)
+3. When it still does not improve, consider the use of dedicated skilled in the art about Tokyo and Beijing.
+e.g. [evolutionnetworks](https://www.evolutionnetworks.net/)
+## Service Restriction
+### First of all
+Very few products that have been launched.
+Specifically, EC2, S3, StorageGateway, Glacier, VPC, Direct Connect, IAM, Trusted Advisor, CloudTrail, CloudWatch, DynamoDB, ElasticCache,  RDS, CloudFormation, EMR, Kinesis, SNS, SQS, SWF.
+### Support by AWS
+1. From the difference of the agreement , it is not possible to compile a global account .
+2. [Billing Beijing Account Support Plan](http://www.amazonaws.cn/en/support-plans/)
+  min ¥0.599k (CNY)
+  e.g. if forecast Billing ¥21.37K (CNY)
+       Business support billing is 10% ¥2.137(CNY)
+       1 CNY = about 20 JPY
+### EC2
+1. can't share another Region AMI.
+AMI is a specification that is held in each region.
+Beijing Region account can only refer to its own region.
+Or, the EBS to iso, although there is a method to copy , can not be recommended because AMI names and data does not match .
+![copy to Beijing](migrate_centos_from_global_to_bjs_en.pdf)
+2. It can not be utilized Marketplace.
+3. It can use Community AMI.
+4. It is not supported for auto recovery.
+EOL.
+Add Comment
