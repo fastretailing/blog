@@ -25,8 +25,8 @@ We Fast Retailing also hold several licenses for our brands to provide web conte
 Domain, License No.
 uniqlo.com, 沪ICP备09003223号-4
 uniqlo.cn, 沪ICP备09003223号-1
-fastretailing.com, 沪ICP备09003223号-3
 gu-global.com, 沪ICP备13017798号-1
+fastretailing.com, 沪ICP备09003223号-3
 |===
 
 ====== Great Firewall
