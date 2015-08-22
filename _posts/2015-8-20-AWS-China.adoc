@@ -31,8 +31,8 @@ fastretailing.com, 沪ICP备09003223号-3
 |===
 
 === Great Firewall
-This is another very well-known unique restriction in mainland China. You can find what it is and how it works in somewhere online(Please just google it or just jump to https://en.wikipedia.org/wiki/Great_Firewall[wikipedia]). But in a nuts shell, all inbound/outbound traffics on HTTP(80)/HTTPs(443) are monitored and censored all the time, and would be blocked at DNS level if China government found your web service providing contents which are against China government.
-Especially when traffic goes out of mainland China, it is strictly censored and makes traffic roundtrip extremely slow.
+This is another very well-known unique restriction in mainland China. You can find what it is and how it works in somewhere online(Please just google it or just jump to https://en.wikipedia.org/wiki/Great_Firewall[wikipedia]). But in a nutshell, all inbound/outbound traffics on HTTP(80)/HTTPs(443) are monitored and can be blocked at DNS level by China government.
+Especially when traffic goes out of mainland China, it is monitored and makes traffic roundtrip extremely slow.
 Even network traffic completes inside of China, it is still unstable especially if traffic goes beyond a boundary between North side dominated by China telecom and South side dominated by China Unicom. Because of these reasons, when you provide web contents from somewhere outside of mainland China, you need to pay attention on huge network latency in your system architecture design. This is the biggest reason which would make you want to have a completely independent infrastructure inside of mainland China to overcome network latency issue and be able to provide sufficient user experience to your China customers or employees.
 
 = AWS China(Beijing) Region Uniqueness
@@ -51,7 +51,8 @@ Similar to billing, as we cannot consolidate our China account with any other Gl
 When it comes to AWS service coverage and availability. As of writing, 2015/08/20, there are plenty of services we can already use as listed below.
 EC2, S3, StorageGateway, Glacier, VPC, Direct Connect, IAM, Trusted Advisor, CloudTrail, CloudWatch, DynamoDB, ElasticCache, RDS, CloudFormation, EMR, Kinesis, SNS, SQS, SWF
 image::http://fastretailing.github.io/blog/images/china_admin_console.png
-We are really looking for Lambda support and API Gateway as we will be heavily relying on these 2 services down the road. I hope they will become available even in China region soon.
+We are really looking forward to Lambda support and API Gateway as we will be heavily relying on these 2 services down the road. I hope they will become available even in China region soon.
+Another AWS service which everybody needs but is not available yet is `CloudFront`. As I said, even if you have your system up and running in mainland China, there would be still some network instability you and your system users might face. This would make you want to have CDN(Contents Delivery Network) between your users and your system inside of China. As `CloudFront` is not ready yet in China region, we Fast Retailing utilize both `Akamai` and `China Cache` as CDN in front of our systems.
 
 == ICP License Registration
 As mentioned above, it is a regulation to acquire an ICP license whenever you provide web contents over HTTP(80)/HTTPs(443) in mainland China. This is the reason that even after you set up your web service on top of EC2, S3 or whatever, you still cannot access to your web service from the Internet. Very first time when we found that HTTP/HTTPs GET cannot be completed even after our system is completely ready, we really freaked out and had no idea what was happening...(yes, we should have read through all instructions upfront). You would get 403(Forbidden) response without your ICP license No. associated on your China account. In order to get this done, you can either reach out to your AWS counterpart and have them help you or register it on account setting page on your own. This registration process and getting your ICP license verified would take around a week(in our case, 5 business days). Then you would finally get your web service all ready.
