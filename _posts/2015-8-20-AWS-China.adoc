@@ -13,22 +13,24 @@ As we have global reachability, of course we aggressively take advantage of AWS 
 == Web Service to China
 As described above, when we provide a web service in mainland China, there are some difficulties. I will quickly list up 2 significant challenges below and talk about them one by one in the following section.
 
-. ICP License
+. ICP Recordal/License
 . Great Firewall
 
-=== ICP License
-As you all may know, if you provide a web service in mainland China, it is necessary to acquire an ICP(Internet Content Provider) license from the China government. This license requires us to have a legal entity inside of China and go though required procedure. In addtion, once you acquired it, you need to put it at the bottom of all of your web pages.
-We Fast Retailing do hold several licenses for our brands to provide web contents in mainland China as you can see below.
+=== ICP Recordal/License
+As you all may know, if you provide a web service in mainland China, it is necessary to acquire an ICP(Internet Content Provider) recordal or license from the China government. This recordal/license requires us to have a legal entity inside of China and go though required procedure. In addition, once you acquired it, you are supposed to put it at the bottom of all of your web pages.
+We Fast Retailing do hold several ICP recordals for our brands to provide web contents in mainland China as you can see below.
 
 [format="csv", options="header"]
-.Fast Retailing ICP License List
+.Fast Retailing ICP Recordal List
 |===
-Domain, License No.
+Domain, Recordal No.
 uniqlo.com, 沪ICP备09003223号-4
 uniqlo.cn, 沪ICP备09003223号-1
 gu-global.com, 沪ICP备13017798号-1
 fastretailing.com, 沪ICP备09003223号-3
 |===
+
+image::http://fastretailing.github.io/blog/images/china_icp_footer.png
 
 === Great Firewall
 This is another very well-known unique restriction in mainland China. You can find what it is and how it works in somewhere online(Please just google it or just jump to https://en.wikipedia.org/wiki/Great_Firewall[wikipedia]). But in a nutshell, all inbound/outbound traffics on HTTP(80)/HTTPs(443) are monitored and can be blocked at DNS level by China government.
@@ -50,13 +52,14 @@ Similar to billing, as we cannot consolidate our China account with any other Gl
 == Service Availability
 When it comes to AWS service coverage and availability. As of writing, 2015/08/20, there are plenty of services we can already use as listed below.
 EC2, S3, StorageGateway, Glacier, VPC, Direct Connect, IAM, Trusted Advisor, CloudTrail, CloudWatch, DynamoDB, ElasticCache, RDS, CloudFormation, EMR, Kinesis, SNS, SQS, SWF
-image::http://fastretailing.github.io/blog/images/china_admin_console.png
+image::http://fastretailing.github.io/blog/images/china_service_list.png
 We are really looking forward to Lambda support and API Gateway as we will be heavily relying on these 2 services down the road. I hope they will become available even in China region soon.
 Another AWS service which everybody needs but is not available yet is `CloudFront`. As I said, even if you have your system up and running in mainland China, there would be still some network instability you and your system users might face. This would make you want to have CDN(Contents Delivery Network) between your users and your system inside of China. As `CloudFront` is not ready yet in China region, we Fast Retailing utilize both `Akamai` and `China Cache` as CDN in front of our systems.
+For more details and the latest information, please refer to http://docs.amazonaws.cn/en_us/aws/latest/userguide/services.html[the official online document] maintained by AWS.
 
-== ICP License Registration
-As mentioned above, it is a regulation to acquire an ICP license whenever you provide web contents over HTTP(80)/HTTPs(443) in mainland China. This is the reason that even after you set up your web service on top of EC2, S3 or whatever, you still cannot access to your web service from the Internet. Very first time when we found that HTTP/HTTPs GET cannot be completed even after our system is completely ready, we really freaked out and had no idea what was happening...(yes, we should have read through all instructions upfront). You would get 403(Forbidden) response without your ICP license No. associated on your China account. In order to get this done, you can either reach out to your AWS counterpart and have them help you or register it on account setting page on your own. This registration process and getting your ICP license verified would take around a week(in our case, 5 business days). Then you would finally get your web service all ready.
-image::http://fastretailing.github.io/blog/images/china_icp_license_registration.png
+== ICP Recordal/License
+As mentioned above, it is a regulation to acquire an ICP recordal/license whenever you provide web contents over HTTP(80)/HTTPs(443) in mainland China. This is the reason that even after you set up your web service on top of EC2, S3 or whatever, you still cannot access to your web service from the Internet. Very first time when we found that HTTP/HTTPs GET cannot be completed even after our system is completely ready, we really freaked out and had no idea what was happening...(yes, we should have read through all instructions upfront). You would get 403(Forbidden) response without your ICP license No. associated on your China account. In order to get this done, you can either reach out to your AWS counterpart to get a help on this or send an email to `Sinnet`, who is an IDC-licensed provider responsible for supporting and verifying ICP recordal/license for AWS customers, to have them register it on account setting page on your own. This registration process and getting your ICP recordal/license verified would take around a week(in our case, 5 business days). Then you would finally get your web service all ready.
+image::http://fastretailing.github.io/blog/images/china_icp_license.png
 
 == MFA
 Of course, protecting your account is one of very important thing you are also responsible for. In our case, we have a strict internal regulation to enable MFA(Multi Factor Authentication) to all AWS administrative accounts. In other word, we have been simply counting on MFA for all of our Global accounts. However, unfortunately MFA is not available yet in China account, which was actually huge surprise for us. We cannot simply rely on it like all other accounts to make your account secure. I guess only one thing we can do for now then is to make your administrative account password as complex as possible, and that is what we do as of today. We are now pushing AWS team really hard to get it ready. Let's wait without losing the hope.
