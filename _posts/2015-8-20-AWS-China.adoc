@@ -18,7 +18,7 @@ As described above, when we provide a web service in mainland China, there are s
 
 === ICP Recordal/License
 As you all may know, if you provide a web service in mainland China, it is necessary to acquire an ICP(Internet Content Provider) recordal or license from the China government. This recordal/license requires us to have a legal entity inside of China and go though required procedure. In addition, once you acquired it, you are supposed to put it at the bottom of all of your web pages.
-We Fast Retailing do hold several ICP recordals for our brands to provide web contents in mainland China as you can see below.
+We Fast Retailing do hold several ICP recordals for our brands to provide web contents in mainland China as you can see below. We do not have any ICP license as all online commercial transactions for our brands are basically completed in the 3rd party platform(Taobao: tmall.com). They have an authorized ICP license on behalf of all tenants.
 
 [format="csv", options="header"]
 .Fast Retailing ICP Recordal List
