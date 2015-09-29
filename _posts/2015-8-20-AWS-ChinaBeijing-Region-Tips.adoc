@@ -1,0 +1,84 @@
+= AWS China(Beijing) Region Tips
+Keito Fukuda <keito.fukuda@fastretailing.com>
+:toc:
+
+Hi, there, my name is Keito Fukuda, a lead technical architect at Fast Retailing.
+Today I would like to talk about AWS China(Beijing) region since it is very unique from all other AWS regions and you may would like to know the discrepancies in advance of you starting to use it without making some efforts to figure it out on your own.
+
+== Fast Retailing
+Let me start with a little bit talking about our company Fast Retailing as there are some chances that you hear very first time and have no idea about us.
+We Fast Retailing is a fast growing global leading apparel company and a holding company which owns various global apparel brands underneath such as UNIQLO, GU, they are born in Japan and rapidly spreading out to global markets. Theory, JBrand, they are originally from US but both have global penetration and large number of customers(funs) all over the world. Last but not least, Comptoir des Cotonniers and Princesse tam tam, which are from France.
+As we have global reachability, of course we aggressively take advantage of AWS and its global regions for our systems. We as of today utilize Tokyo, Singapore, Virginia, California, Sydney, Ireland, Frankfrut, then of course China(Beijing) regions to provide our services to our global customers as well as systems to our global employees. Especially China(Beijing) region is pretty important for us as it is our 2nd biggest market generating huge profit, besides there are some challenges due to some unique legal and infrastructure restrictions.
+
+== Web Service to China
+As described above, when we provide a web service in mainland China, there are some difficulties. I will quickly list up 2 significant challenges below and talk about them in detail one by one in the following section.
+
+. ICP Recordal/License
+. Great Firewall
+
+=== ICP Recordal/License
+As you all may know, if you provide a web service in mainland China, it is necessary to acquire an ICP(Internet Content Provider) recordal or license from the China government. This recordal/license requires us to have a legal entity inside of China and go though a required procedure. In addition, once you acquired it, you are mandated to put it at the bottom of all of your web pages for China.
+We Fast Retailing do hold several ICP recordals for our brands to provide web contents in mainland China as you can see below. We do not have any ICP license as all online commercial transactions for our brands are basically completed in the 3rd party platform(Taobao: tmall.com). They have an authorized ICP license on behalf of all tenants.
+
+[format="csv", options="header"]
+.Fast Retailing ICP Recordal List
+|===
+Domain, Recordal No.
+uniqlo.com, 沪ICP备09003223号-4
+uniqlo.cn, 沪ICP备09003223号-1
+gu-global.com, 沪ICP备13017798号-1
+fastretailing.com, 沪ICP备09003223号-3
+|===
+
+image::http://fastretailing.github.io/blog/images/china_icp_footer.png[]
+
+=== Great Firewall
+This is another very well-known unique restriction in mainland China. You can find what it is and how it works in somewhere online(Please just google it or just jump to https://en.wikipedia.org/wiki/Great_Firewall[wikipedia]). But in a nutshell, all inbound/outbound traffics on HTTP(80)/HTTPs(443) are monitored and can be blocked by China government.
+Especially when traffic goes through a boundery between inside and outside of mainland China, traffic roundtrip would be  extremely slow.
+Even if network traffic completes only inside of China, it is still considered to be unstable especially if traffic goes beyond a boundary between North side and South side as there are 2 different network careers dominating each area. Because of these reasons, when you provide web contents to mainland China, you need to pay attention on huge network latency in your system architecture design. This is the biggest reason which would make you want to have a completely independent infrastructure inside of mainland China to overcome this issue and be able to provide sufficient user experience to your China customers or employees.
+
+= AWS China(Beijing) Region Uniqueness
+Okay, then let me deep dive on what are the differences exactly from here. Because of the China unique restrictions described in the prior section, when you set up your web service in AWS China(Beijing) region, there are several consideration points you need to keep in mind. Here I will tell you each one of them which we have discovered so far through our operation in China(Beijing) region.
+
+== Account
+First of all, let me talk about AWS account. This is one of things which work in different way from all other AWS regions. In order to use China region, you need a completely independent account, which is dedicated only for China region and given only when you are authorized by AWS. Unlike Global AWS account, you cannot create your account on the fly by yourself. You first need to submit your information https://www.amazonaws.cn/en/sign-up/[here], then have to wait to get it verified and authorized.
+
+== Billing
+Even if you have multi AWS accounts, one of great features for billing which you can use in Global account is `Consolidated Billing`, which allows you to consolidate all billings associated with all your accounts and let you make a single payment at once. However unfortunately this does not cover AWS China account. Once you get a China account, you need to register your billing information separately from your Global account and it cannot be consolidated. Besides, a bank account to make payment is also different from Global account, which sometimes make it tricky to get yourself ready to pay, especially you work for a large company and need to register it in your company.
+
+== Support Plan
+Similar to billing, as we cannot consolidate our China account with any other Global accounts, even if you already subscribe https://aws.amazon.com/premiumsupport/[AWS support plan], that support can not be applied and cover your China account. If you need intensive support from AWS, you have to subscribe https://www.amazonaws.cn/en/support-plans/[another support plan] dedicated only for your China account.
+
+== Service Availability
+When it comes to AWS service coverage and availability. As of writing, 2015/08/20, there are plenty of services we can already use as listed below.
+EC2, S3, StorageGateway, Glacier, VPC, Direct Connect, IAM, Trusted Advisor, CloudTrail, CloudWatch, DynamoDB, ElasticCache, RDS, CloudFormation, EMR, Kinesis, SNS, SQS, SWF
+
+image::http://fastretailing.github.io/blog/images/china_service_list.png[]
+
+We are really looking forward to Lambda support and API Gateway as we will be heavily relying on these 2 services to efficiently build and maintain a bunch of micro services down the road. I strongly hope that they will become available even in China region soon.
+Another AWS service which everybody needs but is not available yet is `CloudFront`. As I said, even if you have your system up and running in mainland China, there would be still some network instability you and your system users might face. This would make you want to have CDN(Contents Delivery Network) between your users and your system inside of China. As `CloudFront` is not ready yet in China region, we Fast Retailing utilize both `Akamai` and `China Cache` as CDN in front of our systems.
+For more details and the latest information, please refer to http://docs.amazonaws.cn/en_us/aws/latest/userguide/services.html[the official online document] maintained by AWS.
+
+== ICP Recordal/License
+As mentioned above, it is a regulation to acquire an ICP recordal/license whenever you provide web contents over HTTP(80)/HTTPs(443) in mainland China. This is the reason that even after you set up your web service on top of EC2, S3 or whatever, you still cannot access to your web service from the Internet(BTW, all other traffic other than HTTP/HTTPs are fine). Very first time when we found that this incident, we really freaked out and had no idea what was happening...(yes, we should have read through all instructions upfront). You would not reach your web server without your ICP recordal/license No. associated on your AWS China account. In order to get this done, you can either reach out to your AWS counterpart to get a help or directly send an email to `Sinnet`, who is an IDC-licensed provider responsible for supporting and verifying ICP recordal/license for AWS customers, at `My Account` on your own to have them register it. This registration process and getting your ICP recordal/license verified would take around a week(in our case, 5 business days). Then you would finally get your web service all ready.
+
+image::http://fastretailing.github.io/blog/images/china_icp_license.png[]
+
+== MFA
+Of course, protecting your account is one of very important things you are also responsible for. In our case, we have a strict internal regulation to enable MFA(Multi Factor Authentication) to all AWS administrative accounts. In other word, we have been simply counting on MFA for all of our Global accounts. However, unfortunately MFA is not available yet in China account, which was actually a huge surprise for us. We cannot simply rely on it like all other Global accounts to make your account secure. I guess only one thing we can do for now then is to make your administrative account password as complex as possible, and that is what we do as of today. We are now pushing AWS team really hard to get it ready. Let's stay patient without losing the hope.
+
+== AMI
+Do you share and reuse your AMI(Amazon Machine Image) across accounts or regions? Unfortunately that is another restriction in China account. We Fast Retailing also heavily rely on AMI to make infra set-up as fast and efficient as possible. AMI is just awesome. Having said that, we are not allowed to copy an AMI taken in other global regions or your other accounts. So basically you need to set up your system from middleware setup to deploying your app codes all on your own at very first time. Once you set it up, you can take an AMI out of it and use it to spin up another instance you need.
+In addition, as you can easily imagine, yes, you cannot take advantage of AWS Marketplace either. This would sometimes make huge implication to your setup operation.
+As for Community AMI, there are some Community AMIs already available even in China region, but they are completely separated from Community AMIs under Global account. You would find only very limited AMIs there as of today(2015/08/20). So it is recommended to check availability of an Community AMI you would like to use in China account beforehand.
+
+== Auto-Recovery
+We do generally set Auto-Recovery on EC2 instances, especially when our EC2 based system cannot be run together with multi-instances and it is really difficult to have high-availability. Auto-Recovery brings us huge help in minimizing down-time of your system without any manual operation on the fly in case your instance somehow goes down. However unfortunately, Auto-Recovery is not ready yet in China region.
+
+== Admin Console
+I hope you do not have any problem in reading English, then you are totally fine. However unlike Global accounts which support multi-languages in admin console. Admin console of China account is only in English and Simplified Chinese as of today. You can change the language in `Console Preferences`. This is another difference from Global account.
+
+image::http://fastretailing.github.io/blog/images/china_admin_console.png[]
+
+== Conclusion
+Today, I touched on AWS China(Beijing) region and described some outstanding uniquenesses you should be aware of prior to you start using it. As you saw above, there are many differences compared to all other global regions which you usually use. Some differences may be filled up in the future, but there are still some differences even AWS cannot do anything on due to China legal regulation. I hope you were able to at least get a sense of how different it is and what you need to keep in mind here. Please stay tuned for our upcoming article.
