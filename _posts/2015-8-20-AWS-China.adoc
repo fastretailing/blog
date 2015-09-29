@@ -40,8 +40,6 @@ Even if network traffic completes only inside of China, it is still considered t
 = AWS China(Beijing) Region Uniqueness
 Okay, then let me deep dive on what are the differences exactly from here. Because of the China unique restrictions described in the prior section, when you set up your web service in AWS China(Beijing) region, there are several consideration points you need to keep in mind. Here I will tell you each one of them which we have discovered so far through our operation in China(Beijing) region.
 
-*Disclaimer:
-
 == Account
 First of all, let me talk about AWS account. This is one of things which work in different way from all other AWS regions. In order to use China region, you need a completely independent account, which is dedicated only for China region and given only when you are authorized by AWS. Unlike Global AWS account, you cannot create your account on the fly by yourself. You first need to submit your information https://www.amazonaws.cn/en/sign-up/[here], then have to wait to get it verified and authorized.
 
@@ -54,13 +52,16 @@ Similar to billing, as we cannot consolidate our China account with any other Gl
 == Service Availability
 When it comes to AWS service coverage and availability. As of writing, 2015/08/20, there are plenty of services we can already use as listed below.
 EC2, S3, StorageGateway, Glacier, VPC, Direct Connect, IAM, Trusted Advisor, CloudTrail, CloudWatch, DynamoDB, ElasticCache, RDS, CloudFormation, EMR, Kinesis, SNS, SQS, SWF
+
 image::http://fastretailing.github.io/blog/images/china_service_list.png[]
+
 We are really looking forward to Lambda support and API Gateway as we will be heavily relying on these 2 services to efficiently build and maintain a bunch of micro services down the road. I strongly hope that they will become available even in China region soon.
 Another AWS service which everybody needs but is not available yet is `CloudFront`. As I said, even if you have your system up and running in mainland China, there would be still some network instability you and your system users might face. This would make you want to have CDN(Contents Delivery Network) between your users and your system inside of China. As `CloudFront` is not ready yet in China region, we Fast Retailing utilize both `Akamai` and `China Cache` as CDN in front of our systems.
 For more details and the latest information, please refer to http://docs.amazonaws.cn/en_us/aws/latest/userguide/services.html[the official online document] maintained by AWS.
 
 == ICP Recordal/License
 As mentioned above, it is a regulation to acquire an ICP recordal/license whenever you provide web contents over HTTP(80)/HTTPs(443) in mainland China. This is the reason that even after you set up your web service on top of EC2, S3 or whatever, you still cannot access to your web service from the Internet(BTW, all other traffic other than HTTP/HTTPs are fine). Very first time when we found that this incident, we really freaked out and had no idea what was happening...(yes, we should have read through all instructions upfront). You would not reach your web server without your ICP recordal/license No. associated on your AWS China account. In order to get this done, you can either reach out to your AWS counterpart to get a help or directly send an email to `Sinnet`, who is an IDC-licensed provider responsible for supporting and verifying ICP recordal/license for AWS customers, at `My Account` on your own to have them register it. This registration process and getting your ICP recordal/license verified would take around a week(in our case, 5 business days). Then you would finally get your web service all ready.
+
 image::http://fastretailing.github.io/blog/images/china_icp_license.png[]
 
 == MFA
@@ -76,6 +77,7 @@ We do generally set Auto-Recovery on EC2 instances, especially when our EC2 base
 
 == Admin Console
 I hope you do not have any problem in reading English, then you are totally fine. However unlike Global accounts which support multi-languages in admin console. Admin console of China account is only in English and Simplified Chinese as of today. You can change the language in `Console Preferences`. This is another difference from Global account.
+
 image::http://fastretailing.github.io/blog/images/china_admin_console.png[]
 
 == Conclusion
