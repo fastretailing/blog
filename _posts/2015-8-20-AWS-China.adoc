@@ -30,7 +30,7 @@ gu-global.com, 沪ICP备13017798号-1
 fastretailing.com, 沪ICP备09003223号-3
 |===
 
-image:http://fastretailing.github.io/blog/images/china_icp_footer.png
+image::http://fastretailing.github.io/blog/images/china_icp_footer.png[]
 
 === Great Firewall
 This is another very well-known unique restriction in mainland China. You can find what it is and how it works in somewhere online(Please just google it or just jump to https://en.wikipedia.org/wiki/Great_Firewall[wikipedia]). But in a nutshell, all inbound/outbound traffics on HTTP(80)/HTTPs(443) are monitored and can be blocked by China government.
@@ -54,14 +54,14 @@ Similar to billing, as we cannot consolidate our China account with any other Gl
 == Service Availability
 When it comes to AWS service coverage and availability. As of writing, 2015/08/20, there are plenty of services we can already use as listed below.
 EC2, S3, StorageGateway, Glacier, VPC, Direct Connect, IAM, Trusted Advisor, CloudTrail, CloudWatch, DynamoDB, ElasticCache, RDS, CloudFormation, EMR, Kinesis, SNS, SQS, SWF
-image:http://fastretailing.github.io/blog/images/china_service_list.png
+image::http://fastretailing.github.io/blog/images/china_service_list.png[]
 We are really looking forward to Lambda support and API Gateway as we will be heavily relying on these 2 services to efficiently build and maintain a bunch of micro services down the road. I strongly hope that they will become available even in China region soon.
 Another AWS service which everybody needs but is not available yet is `CloudFront`. As I said, even if you have your system up and running in mainland China, there would be still some network instability you and your system users might face. This would make you want to have CDN(Contents Delivery Network) between your users and your system inside of China. As `CloudFront` is not ready yet in China region, we Fast Retailing utilize both `Akamai` and `China Cache` as CDN in front of our systems.
 For more details and the latest information, please refer to http://docs.amazonaws.cn/en_us/aws/latest/userguide/services.html[the official online document] maintained by AWS.
 
 == ICP Recordal/License
 As mentioned above, it is a regulation to acquire an ICP recordal/license whenever you provide web contents over HTTP(80)/HTTPs(443) in mainland China. This is the reason that even after you set up your web service on top of EC2, S3 or whatever, you still cannot access to your web service from the Internet(BTW, all other traffic other than HTTP/HTTPs are fine). Very first time when we found that this incident, we really freaked out and had no idea what was happening...(yes, we should have read through all instructions upfront). You would not reach your web server without your ICP recordal/license No. associated on your AWS China account. In order to get this done, you can either reach out to your AWS counterpart to get a help or directly send an email to `Sinnet`, who is an IDC-licensed provider responsible for supporting and verifying ICP recordal/license for AWS customers, at `My Account` on your own to have them register it. This registration process and getting your ICP recordal/license verified would take around a week(in our case, 5 business days). Then you would finally get your web service all ready.
-image:http://fastretailing.github.io/blog/images/china_icp_license.png
+image::http://fastretailing.github.io/blog/images/china_icp_license.png[]
 
 == MFA
 Of course, protecting your account is one of very important things you are also responsible for. In our case, we have a strict internal regulation to enable MFA(Multi Factor Authentication) to all AWS administrative accounts. In other word, we have been simply counting on MFA for all of our Global accounts. However, unfortunately MFA is not available yet in China account, which was actually a huge surprise for us. We cannot simply rely on it like all other Global accounts to make your account secure. I guess only one thing we can do for now then is to make your administrative account password as complex as possible, and that is what we do as of today. We are now pushing AWS team really hard to get it ready. Let's stay patient without losing the hope.
@@ -76,7 +76,7 @@ We do generally set Auto-Recovery on EC2 instances, especially when our EC2 base
 
 == Admin Console
 I hope you do not have any problem in reading English, then you are totally fine. However unlike Global accounts which support multi-languages in admin console. Admin console of China account is only in English and Simplified Chinese as of today. You can change the language in `Console Preferences`. This is another difference from Global account.
-image:http://fastretailing.github.io/blog/images/china_admin_console.png
+image::http://fastretailing.github.io/blog/images/china_admin_console.png[]
 
 == Conclusion
 Today, I touched on AWS China(Beijing) region and described some outstanding uniquenesses you should be aware of prior to you start using it. As you saw above, there are many differences compared to all other global regions which you usually use. Some differences may be filled up in the future, but there are still some differences even AWS cannot do anything on due to China legal regulation. I hope you were able to at least get a sense of how different it is and what you need to keep in mind here. Please stay tuned for our upcoming article.
