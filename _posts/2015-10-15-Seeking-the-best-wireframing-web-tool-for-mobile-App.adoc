@@ -1,6 +1,6 @@
 = Seeking the best wireframing web tool for mobile App
 
-Making prototyping or wire framing your idea is significantly important process for the app developer.
+Making prototyping or wire framing your idea is significantly important process for design mobile app.
 
 == Prott
 https://prottapp.com
